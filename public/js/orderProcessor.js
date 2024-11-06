@@ -1,11 +1,23 @@
-/*
-Add an event handler for the submit event on the form with id "orderForm" in
-    the file "order.html.
-This event handler must:
-1. Prevent submission of the form (which is the default action for the submit
-    event on a form).
-2. Get the values of the 2 input elements in the form. The value of an input
-    element in a form is available as the attribute "value" of the element.
-3. Append a new row to the table with the id "orderTable" in the file 
-    "order.html." This row must contain the values entered by the user in the 2 input elements.
-*/
+
+// event handler -- on button click
+document.addEventListener('DOMContentLoaded', function(event){
+    console.log(event.type);
+    document.getElementById('submitButton').addEventListener('click', clickHandler);
+});
+
+// add a row to the table based on user input
+function clickHandler(event) {
+    event.preventDefault(); // prevent submission of the form
+    const company = document.getElementById('Company').value;
+    const quantity = document.getElementById('Quantity').value;
+    const orderHistory = document.getElementById('orderTable');
+    const tableBody = orderHistory.querySelector('tbody');
+    const tr = document.createElement('tr');
+    const td1 = document.createElement('td');
+    td1.textContent = company;
+    tr.appendChild(td1);
+    const td2 = document.createElement('td');
+    td2.textContent = quantity;
+    tr.appendChild(td2);
+    tableBody.appendChild(tr);
+}
